@@ -26,7 +26,7 @@
 #include "modules/perception/obstacle/camera/common/lane_object.h"
 #include "modules/perception/obstacle/camera/lane_post_process/common/type.hpp"
 
-namespace adu {
+namespace apollo {
 namespace perception {
 namespace obstacle {
 
@@ -130,10 +130,9 @@ class Cipv {
                          const float offset_distance,
                          LaneLine *virtual_lane_line);
 
-  float vehicle_dynamics(const int tick, const float yaw_rate,
+  float vehicle_dynamics(const uint32_t tick, const float yaw_rate,
                          const float velocity, const float time_unit,
                          float *x, float *y);
-
   // Make a virtual lane line using a yaw_rate
   bool make_virtual_ego_lane_from_yaw_rate(const float yaw_rate,
                                            const float velocity,
@@ -148,6 +147,6 @@ class Cipv {
 
 }  // namespace obstacle
 }  // namespace perception
-}  // namespace adu
+}  // namespace apollo
 
 #endif  // ADU_PERCEPTION_OBSTACLE_CAMERA_CIPV_H

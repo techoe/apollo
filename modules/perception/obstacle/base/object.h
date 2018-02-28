@@ -29,6 +29,7 @@
 #include "modules/perception/lib/base/time_util.h"
 #include "modules/perception/lib/pcl_util/pcl_types.h"
 #include "modules/perception/obstacle/base/object_supplement.h"
+#include "modules/perception/obstacle/camera/lane_post_process/common/type.hpp"
 #include "modules/perception/obstacle/base/types.h"
 
 namespace apollo {
@@ -112,6 +113,7 @@ struct SensorObjects {
   double timestamp = 0.0;
   SeqId seq_num = 0;
   std::vector<ObjectPtr> objects;
+  obstacle::lane_post_process::LaneObjectsPtr lane_objects;
   Eigen::Matrix4d sensor2world_pose;
 };
 

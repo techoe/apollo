@@ -8,11 +8,13 @@ cc_library(
     hdrs = ["cipv.h"],
     deps = [
         "@eigen//:eigen",
+        "//modules/common:log",
         "//modules/perception/lib/base:base",
         "//modules/perception/lib/config_manager:config_manager",
         "//modules/perception/obstacle/camera/common:perception_obstacle_camera_common",
-        "//modules/perception/obstacle/camera/lane_post_process/common:perception_obstacle_camera_lane_post_process",
-        "//modules/perception/obstacle/camera/cipv:perception_obstacle_camera_cipv"
+        "//modules/perception/obstacle/base:perception_obstacle_base",
+        "//modules/perception/obstacle/common:perception_obstacle_common",
+        #"//modules/perception/obstacle/camera/lane_post_process/common:perception_obstacle_camera_lane_post_process_common"
     ]
 )
 
