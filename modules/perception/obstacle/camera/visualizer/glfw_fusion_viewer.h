@@ -104,6 +104,15 @@ class GLFWFusionViewer {
 
   void resize_window(int width, int height);
 
+  // Util funtions
+  bool is_zero(float value) {
+    if (fabs(value) < 0.0000001) {
+      return true; 
+    } else {
+      return false;
+    }
+  }
+
   // callback functions
   static void framebuffer_size_callback(GLFWwindow *window, int width,
                                         int height);
@@ -156,31 +165,40 @@ class GLFWFusionViewer {
 
   // @brief Project 3D point to 2D image using pin-hole camera model with
   // distortion
-  bool project_point_undistort(Eigen::Matrix4d w2c, Eigen::Vector3d pc,
+  bool project_point_undistort(Eigen::Matrix<double, 3, 4>  &projection_matrix, 
+                               Eigen::Vector3d pc,
                                Eigen::Vector2d *p2d);
 
   void get_8points(float width, float height, float length,
                    std::vector<Eigen::Vector3d> *point);
 
-  bool get_boundingbox(Eigen::Vector3d center, Eigen::Matrix4d w2c, float width,
-                       float height, float length, Eigen::Vector3d dir,
-                       float theta, std::vector<Eigen::Vector2d> *points);
+  bool get_boundingbox(Eigen::Vector3d &center,
+                          Eigen::Matrix<double, 3, 4>  &projection_matrix, 
+                          float width, float height, float length,
+                          Eigen::Vector3d dir, float theta,
+                          std::vector<Eigen::Vector2d> *points) ;
 
   bool get_project_point(Eigen::Matrix4d w2c, Eigen::Vector3d pc,
                          Eigen::Vector2d *p2d);
+  bool get_projected_point(
+     Eigen::Matrix<double, 3, 4>  &projection_matrix,
+     Eigen::Vector3d pc,
+     Eigen::Vector2d* p2d);
 
   void draw_line2d(const Eigen::Vector2d &p1, const Eigen::Vector2d &p2,
                    int line_width, int r, int g, int b, int offset_x,
                    int offset_y, int raw_image_width, int raw_image_height);
 
   void draw_camera_box2d(const std::vector<std::shared_ptr<Object>> &objects,
-                         Eigen::Matrix4d w2c, int offset_x, int offset_y,
+                         Eigen::Matrix<double, 3, 4>  &projection_matrix, 
+                         int offset_x, int offset_y,
                          int image_width, int image_height);
 
   void draw_camera_box3d(
       const std::vector<std::shared_ptr<Object>> &camera_objects,
       const std::vector<std::shared_ptr<Object>> &segmented_objects,
-      Eigen::Matrix4d w2c, int offset_x, int offset_y, int image_width,
+      Eigen::Matrix<double, 3, 4> &projection_matrix, 
+      int offset_x, int offset_y, int image_width,
       int image_height);
 
   void draw_rect2d(const Eigen::Vector2d &p1, const Eigen::Vector2d &p2,
@@ -199,7 +217,7 @@ class GLFWFusionViewer {
 
   void draw_3d_classifications(FrameContent *content, bool show_fusion);
   void draw_camera_box(const std::vector<std::shared_ptr<Object>> &objects,
-                       Eigen::Matrix4d w2c, int offset_x, int offset_y,
+                       Eigen::Matrix<double, 3, 4> &projection_matrix, int offset_x, int offset_y,
                        int image_width, int image_height);
 
   void draw_objects2d(const std::vector<std::shared_ptr<Object>> &objects,

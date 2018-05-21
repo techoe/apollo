@@ -125,7 +125,7 @@ DEFINE_bool(show_fusion_association, false, "");
 
 DEFINE_bool(capture_screen, false, "");
 
-DEFINE_string(screen_output_dir, "./", "");
+DEFINE_string(screen_output_dir, "/apollo/data/bag/ssd/result/", "");
 
 DEFINE_string(frame_visualizer, "GLFusionVisualizer", "");
 

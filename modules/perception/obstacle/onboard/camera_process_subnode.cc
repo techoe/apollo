@@ -121,6 +121,9 @@ void CameraProcessSubnode::ImgCallback(const sensor_msgs::Image &message) {
   } else {
     img = cv::imread(FLAGS_image_file_path, CV_LOAD_IMAGE_COLOR);
   }
+  if (img.cols != 1920 || img.rows != 1080) {
+    cv::resize(img, img, cv::Size(1920, 1080), 0, 0, CV_INTER_LINEAR); 
+  }
   std::vector<std::shared_ptr<VisualObject>> objects;
   cv::Mat mask;
   PERF_BLOCK_END("CameraProcessSubnode_Image_Preprocess");

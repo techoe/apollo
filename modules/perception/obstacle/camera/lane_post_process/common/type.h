@@ -55,7 +55,7 @@ namespace perception {
 #endif
 
 #ifndef AVEAGE_LANE_WIDTH_METER
-#define AVEAGE_LANE_WIDTH_METER 3.7
+#define AVEAGE_LANE_WIDTH_METER 4.3
 #endif
 
 constexpr ScalarType INVERSE_AVEAGE_LANE_WIDTH_METER =
